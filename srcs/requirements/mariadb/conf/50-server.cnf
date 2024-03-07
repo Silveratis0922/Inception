@@ -1,0 +1,16 @@
+[server]
+
+[mysqld]
+user		= mysql
+datadir		= /var/lib/mysql
+port		= 3306
+pid-file	= /run/mysqld/mysqld.pid
+bind-address	= *
+basedir		= /usr
+tmpdir		= /tmp
+
+[embedded]
+
+[mariadb]
+
+[mariadb-10.5]
