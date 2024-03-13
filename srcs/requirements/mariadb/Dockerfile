@@ -1,9 +1,9 @@
 FROM 	debian:bullseye
 
-ARG	DB_NAME=${DB_NAME}
-ARG	DB_USER=${DB_USER}
-ARG	DB_PASSWORD=${DB_PASSWORD}
-ARG	DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+ARG	SQL_DATABASE=${SQL_DATABASE}
+ARG	SQL_USER=${SQL_USER}
+ARG	SQL_PASSWORD=${SQL_PASSWORD}
+ARG	SQL_ROOT_PASSWORD=${SQL_ROOT_PASSWORD}
 
 RUN	apt update -y
 RUN	apt upgrade -y
@@ -12,8 +12,8 @@ RUN	apt-get install mariadb-server -y
 
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY	tools/user.sh /
+COPY	tools/user.sh /user.sh
 
-RUN	bash ./user.sh
+RUN	chmod +x /user.sh
 
-CMD	["mysqld_safe"]
+CMD	[ "bash", "user.sh"]

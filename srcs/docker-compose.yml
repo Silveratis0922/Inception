@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   mariadb:
@@ -10,9 +10,7 @@ services:
       dockerfile: Dockerfile
     env_file: .env
     volumes:
-      - type: volume
-        source: mariadb
-        target: /var/lib/mysql
+      - mariadb:/var/lib/mysql
     restart: unless-stopped
     expose:
       - "3306"
@@ -20,9 +18,7 @@ services:
   nginx:
     container_name: nginx
     volumes:
-      - type: volume
-        source: wordpress
-        target: /var/www/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     depends_on:
@@ -39,9 +35,7 @@ services:
     container_name: wordpress
     env_file: .env
     volumes:
-      - type: volume
-        source: wordpress
-        target: /var/www/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     build:
@@ -59,13 +53,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: '/Users/tchantro/data/wordpress'
+      device: '/home/tchantro/data/wordpress'
   mariadb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: '/Users/tchantro/data/mariadb'
+      device: '/home/tchantro/data/mysql'
   
 networks:
   inception:

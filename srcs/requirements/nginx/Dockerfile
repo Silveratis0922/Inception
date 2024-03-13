@@ -11,7 +11,7 @@ RUN	openssl req -x509 -nodes \
 	-keyout /etc/nginx/ssl/inception.key -subj "/CN=tchantro.42.fr" && \
 	mkdir -p /var/run/nginx
 
-COPY	conf/nginx.conf /etc/nginx/nginx.conf
+COPY	conf/nginx.conf /etc/nginx/sites-enabled/
 
 RUN	chmod 755 /var/www/html && \
 	chown -R www-data:www-data /var/www/html
