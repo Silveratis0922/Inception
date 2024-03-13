@@ -17,6 +17,7 @@ clean: stop
 	@echo "Deleting all container ..."
 	docker system prune -f
 	@-docker volume rm `docker volume ls -q`
+	@-docker image rmi `docker image ls -q`
 	@echo "Deleting all data ..."
 	sudo rm -rf /home/tchantro/data/wordpress
 	sudo rm -rf /home/tchantro/data/mysql
