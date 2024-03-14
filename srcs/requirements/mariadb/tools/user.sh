@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo " DATABASE = ${SQL_DATABASE}"
 if [ -d "/var/lib/mysql/${SQL_DATABASE}" ]
 then
 	echo "${SQL_DATABASE} already exists"
